@@ -1,107 +1,674 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Supermarket Order Manager</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nature Basket | Millets & Groundnuts</title>
+
+    <meta name="description"
+          content="Fresh and wholesome millets and groundnuts from our home-based business.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fffdf6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ---------- NAVBAR ---------- */
+
+        header {
+            background: #31572c;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+
+        .navbar {
+            max-width: 1150px;
+            margin: auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f4c95d;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: #f4c95d;
+        }
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            background:
+                linear-gradient(rgba(35, 75, 30, 0.78),
+                rgba(35, 75, 30, 0.78)),
+                url("https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 26px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        .primary {
+            background: #f4c95d;
+            color: #26351f;
+        }
+
+        .primary:hover {
+            background: #eab83e;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .secondary:hover {
+            background: white;
+            color: #31572c;
+        }
+
+        /* ---------- COMMON ---------- */
+
+        section {
+            padding: 70px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            color: #31572c;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* ---------- PRODUCTS ---------- */
+
+        #products {
+            background: #fffdf6;
+        }
+
+        .category-title {
+            color: #31572c;
+            margin: 35px 0 20px;
+            font-size: 1.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            color: #31572c;
+            margin-bottom: 7px;
+        }
+
+        .product-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            color: #c47b00;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        /* ---------- WHY US ---------- */
+
+        #about {
+            background: #eef5e8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            color: #31572c;
+            margin-bottom: 8px;
+        }
+
+        /* ---------- ORDER ---------- */
+
+        #order {
+            background: #31572c;
+            color: white;
+            text-align: center;
+        }
+
+        #order h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        #order p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+
+        /* ---------- CONTACT ---------- */
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            font-size: 1.05rem;
+        }
+
+        .contact-item strong {
+            color: #31572c;
+        }
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background: #203d1e;
+            color: #ddd;
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- MOBILE ---------- */
+
+        @media (max-width: 900px) {
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                min-height: 480px;
+            }
+
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .product-image {
+                height: 140px;
+            }
+
+            .product-info {
+                padding: 13px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header class="topbar">
-    <div>
-      <h1>Supermarket Order Manager</h1>
-      <p>Simple browser-based sales and stock management</p>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+    <div class="navbar">
+
+        <div class="logo">
+            🌾 Nature <span>Basket</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#order">Order</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
     </div>
-    <button id="resetDataBtn" class="btn btn-danger">Reset Demo Data</button>
-  </header>
+</header>
 
-  <main class="container">
-    <nav class="tabs">
-      <button class="tab active" data-tab="dashboard">Dashboard</button>
-      <button class="tab" data-tab="products">Products</button>
-      <button class="tab" data-tab="new-order">New Order</button>
-      <button class="tab" data-tab="orders">Orders</button>
-    </nav>
 
-    <section id="dashboard" class="tab-content active">
-      <div class="cards">
-        <div class="card"><span>Total Products</span><strong id="statProducts">0</strong></div>
-        <div class="card"><span>Stock Units</span><strong id="statStock">0</strong></div>
-        <div class="card"><span>Total Orders</span><strong id="statOrders">0</strong></div>
-        <div class="card"><span>Total Sales</span><strong id="statSales">₹0.00</strong></div>
-      </div>
+<!-- ================= HERO ================= -->
 
-      <div class="panel">
-        <div class="panel-head"><h2>Low Stock</h2><span class="muted">10 units or less</span></div>
-        <div id="lowStockList" class="table-wrap"></div>
-      </div>
-    </section>
+<section class="hero" id="home">
 
-    <section id="products" class="tab-content">
-      <div class="panel">
-        <div class="panel-head">
-          <h2>Product Management</h2>
-          <button id="addProductBtn" class="btn btn-primary">+ Add Product</button>
-        </div>
-        <input id="productSearch" class="search" type="search" placeholder="Search by product name or category...">
-        <div id="productTable" class="table-wrap"></div>
-      </div>
-    </section>
+    <div class="hero-content">
 
-    <section id="new-order" class="tab-content">
-      <div class="order-layout">
-        <div class="panel">
-          <div class="panel-head"><h2>Create Order</h2></div>
-          <input id="orderSearch" class="search" type="search" placeholder="Search products...">
-          <div id="orderProducts" class="product-grid"></div>
-        </div>
+        <h1>Healthy Grains, Naturally</h1>
 
-        <div class="panel cart-panel">
-          <div class="panel-head"><h2>Cart</h2><button id="clearCartBtn" class="btn btn-light">Clear</button></div>
-          <div id="cartItems"></div>
-          <div class="totals">
-            <div><span>Subtotal</span><strong id="cartSubtotal">₹0.00</strong></div>
-            <div><span>Tax (5%)</span><strong id="cartTax">₹0.00</strong></div>
-            <div class="grand"><span>Total</span><strong id="cartTotal">₹0.00</strong></div>
-          </div>
-          <button id="placeOrderBtn" class="btn btn-success full">Place Order</button>
-        </div>
-      </div>
-    </section>
+        <p>
+            Fresh millets and quality groundnuts,
+            carefully sourced and packed for your family.
+        </p>
 
-    <section id="orders" class="tab-content">
-      <div class="panel">
-        <div class="panel-head">
-          <h2>Order History</h2>
-          <input id="orderHistorySearch" class="search small-search" type="search" placeholder="Search order...">
-        </div>
-        <div id="orderTable" class="table-wrap"></div>
-      </div>
-    </section>
-  </main>
+        <a href="#products" class="button primary">
+            View Products
+        </a>
 
-  <div id="productModal" class="modal hidden">
-    <div class="modal-box">
-      <div class="modal-head">
-        <h2 id="modalTitle">Add Product</h2>
-        <button id="closeModal" class="icon-btn">×</button>
-      </div>
-      <form id="productForm">
-        <input type="hidden" id="productId">
-        <label>Product Name<input id="productName" required maxlength="80"></label>
-        <label>Category<input id="productCategory" required maxlength="40"></label>
-        <div class="form-row">
-          <label>Price (₹)<input id="productPrice" type="number" min="0" step="0.01" required></label>
-          <label>Stock<input id="productStock" type="number" min="0" step="1" required></label>
-        </div>
-        <div class="modal-actions">
-          <button type="button" id="cancelModal" class="btn btn-light">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Product</button>
-        </div>
-      </form>
+        <a href="#order" class="button secondary">
+            Place an Order
+        </a>
+
     </div>
-  </div>
 
-  <script src="script.js"></script>
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="products">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Our Products</h2>
+            <p>Good food starts with good ingredients.</p>
+        </div>
+
+
+        <h3 class="category-title">🌾 Millets</h3>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80"
+                    alt="Ragi">
+
+                <div class="product-info">
+                    <h3>Ragi</h3>
+                    <p>Fresh quality finger millet.</p>
+                    <div class="price">₹120 / kg</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80"
+                    alt="Jowar">
+
+                <div class="product-info">
+                    <h3>Jowar</h3>
+                    <p>Wholesome and nutritious sorghum.</p>
+                    <div class="price">₹100 / kg</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80"
+                    alt="Bajra">
+
+                <div class="product-info">
+                    <h3>Bajra</h3>
+                    <p>Quality pearl millet for everyday use.</p>
+                    <div class="price">₹90 / kg</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1608797178974-15b35a64ede9?auto=format&fit=crop&w=600&q=80"
+                    alt="Foxtail Millet">
+
+                <div class="product-info">
+                    <h3>Foxtail Millet</h3>
+                    <p>A wholesome traditional grain.</p>
+                    <div class="price">₹140 / kg</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h3 class="category-title">🥜 Groundnuts</h3>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1567892737950-30c4db37cd89?auto=format&fit=crop&w=600&q=80"
+                    alt="Groundnuts">
+
+                <div class="product-info">
+                    <h3>Raw Groundnuts</h3>
+                    <p>Fresh quality groundnuts.</p>
+                    <div class="price">₹160 / kg</div>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=600&q=80"
+                    alt="Peanuts">
+
+                <div class="product-info">
+                    <h3>Roasted Groundnuts</h3>
+                    <p>Crispy roasted groundnuts.</p>
+                    <div class="price">₹180 / kg</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Why Choose Us?</h2>
+            <p>Simple, honest and wholesome.</p>
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">🌱</div>
+                <h3>Quality Products</h3>
+                <p>
+                    We focus on providing good quality
+                    millets and groundnuts.
+                </p>
+            </div>
+
+
+            <div class="feature">
+                <div class="feature-icon">🏠</div>
+                <h3>Home Based</h3>
+                <p>
+                    A small home-based business with
+                    personal attention to every order.
+                </p>
+            </div>
+
+
+            <div class="feature">
+                <div class="feature-icon">❤️</div>
+                <h3>Made With Care</h3>
+                <p>
+                    We believe healthy food should be
+                    simple, fresh and accessible.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ORDER ================= -->
+
+<section id="order">
+
+    <div class="container">
+
+        <h2>Ready to Order?</h2>
+
+        <p>
+            Select the products you need and submit
+            your order through our simple online form.
+            We will contact you to confirm the order.
+        </p>
+
+        <!--
+        REPLACE THE URL BELOW WITH YOUR GOOGLE FORM URL
+        -->
+
+        <a
+            href="https://forms.google.com/"
+            target="_blank"
+            class="button primary">
+
+            📝 Place Your Order
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>We would be happy to hear from you.</p>
+        </div>
+
+
+        <div class="contact-box">
+
+            <div class="contact-item">
+                📞 <strong>Phone:</strong>
+                +91 XXXXX XXXXX
+            </div>
+
+            <div class="contact-item">
+                💬 <strong>WhatsApp:</strong>
+                +91 XXXXX XXXXX
+            </div>
+
+            <div class="contact-item">
+                📍 <strong>Location:</strong>
+                Your City, Andhra Pradesh
+            </div>
+
+            <a
+                href="https://wa.me/91XXXXXXXXXX"
+                target="_blank"
+                class="button primary">
+
+                💬 Chat on WhatsApp
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Nature Basket. All rights reserved.
+    </p>
+
+    <p>
+        Fresh Millets • Quality Groundnuts • Healthy Living
+    </p>
+
+</footer>
+
+
 </body>
 </html>
